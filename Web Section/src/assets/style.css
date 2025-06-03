@@ -1,0 +1,40 @@
+/* =============================================
+   Base Page Layout and Background Styling
+   ============================================= */
+
+/* Ensure the <html> and <body> take the full viewport height.
+   This is useful for layout stability and full-page background colors.
+*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #e0e0e0;  /* Light gray background for contrast */
+    font-family: system-ui, sans-serif;  /* Modern readable font */
+}
+
+/* Enables vertical scrolling in case content overflows the viewport */
+body {
+    overflow: auto;
+}
+
+
+/* =============================================
+   Canvas Styling (e.g. 3D Scene, Chart, etc.)
+   ============================================= */
+
+/* Style applied to the <canvas> element:
+   - Block display ensures no inline spacing issues
+   - Responsive width with max size constraints
+   - Centered horizontally with margin: auto
+   - Dark border for visibility
+*/
+canvas {
+    display: block;
+    width: 100%;           /* Responsive full width */
+    max-width: 1400px;     /* Limit width on large screens */
+    height: auto;
+    max-height: 700px;     /* Avoid overly tall canvas */
+    border: 2px solid #555; /* Dark gray border for definition */
+    margin: auto;          /* Horizontal centering */
+}

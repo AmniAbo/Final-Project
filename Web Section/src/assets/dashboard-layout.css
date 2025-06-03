@@ -1,0 +1,168 @@
+/* ===========================================
+   Dashboard – Fully Responsive Cards
+   =========================================== */
+
+/* 1. Grid Layout for Cards (Responsive) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* 2. Base Card Style */
+.card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .07);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  transition: transform 0.2s;
+  font-size: 0.9rem;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* 3. Remove Fixed Widths – Let Grid Handle It */
+#weather-card,
+#traffic-card,
+#pedestrian-forecast-card,
+#greenlight-card,
+#sensors-card,
+#daytime-card,
+#forecast-traffic-card,
+#forecast-pedestrian-card {
+  width: 100%; /* important: let the grid set the width */
+  max-width: 100%;
+}
+
+/* Optional: Adjust height for taller cards */
+#greenlight-card,
+#forecast-traffic-card,
+#forecast-pedestrian-card {
+  min-height: 300px;
+}
+
+/* 4. Card Header */
+.card-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.date-range {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+/* 5. Stats Layout Inside Cards */
+.stats-summary,
+.stats-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summary-item,
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* 6. Text Inside Each Stat */
+.summary-value,
+.stat-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.summary-label,
+.stat-label {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* 7. Colored Dot Indicators */
+.status-dot {
+  width: 0.6875rem;
+  height: 0.6875rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+
+.status-low    { background: #16a34a; }
+.status-medium { background: #facc15; }
+.status-high   { background: #dc2626; }
+
+/* 8. Special Font Fixes for Specific Cards */
+#pedestrian-forecast-card .summary-value {
+  font-size: 1rem;
+}
+
+#sensors-card .summary-value {
+  font-size: 0.9rem;
+}
+
+/* 9. Chart canvases (ensure they scale) */
+#forecast-traffic-card canvas,
+#forecast-pedestrian-card canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* ------------------------
+   Dark Mode Overrides for Cards
+   ------------------------ */
+.dark .card {
+  background-color: #374151; /* Tailwind gray-700 */
+  color: #ffffff;
+}
+
+.dark .card * {
+  color: #ffffff;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+
+@media (min-width: 1024px) {
+  #forecast-traffic-card,
+  #forecast-pedestrian-card {
+    grid-column: span 2;
+  }
+}
+
+
+#forecast-traffic-card canvas,
+#forecast-pedestrian-card canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+#help-content {
+  max-height: 60vh; 
+  overflow-y: auto;
+  padding-right: 0.5rem; 
+}
