@@ -188,7 +188,3 @@ helpClose.addEventListener("click", () => {
 });
 
 });
-
-
-
-
