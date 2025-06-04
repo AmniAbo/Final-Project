@@ -1,1 +1,98 @@
-{"components":[],"type":"atom","versions":"Beta","units":[],"hats":[],"stamps":[],"blockly":"<block type=\"basic_on_setup\" id=\"setup_block\" deletable=\"false\" x=\"50\" y=\"50\"></block>","Blockly.Remotes":[],"Blockly.RemotePlus":[{"id":"__title","blockId":"","createTime":1748644898979,"name":"M5RemoteTitle","dragAndDrop":false,"resizable":false,"options":{"minWidth":1,"minHeight":1,"maxWidth":6,"maxHeight":10,"defaultWidth":2,"defaultHeight":1},"w":2,"h":1,"bgColor":"#0080FF","color":"#fff","fontsize":"M","label":"M5Remote","interval":3000,"code":"","event":"","dataSource":"none","ezdataToken":"gUHmkG5M7ZblzkoGZBfIrNU5Xic5KSuA","topic":"","needShadow":false,"type":"title","x":null,"y":null}],"modules":[],"cbIdList_":[],"eventCBIdList_":[],"apikey":"1183B01C","uuid":"52d7b8e9-1ce4-4b81-b2b5-fc862572a22c"}
+from m5stack import *
+from m5ui import *
+from uiflow import *
+from m5mqtt import M5mqtt
+import urequests
+import gc
+from easyIO import *
+
+
+prev_state_light3 = 'red'
+prev_state_light4 = 'red'
+
+
+# MQTT
+m5mqtt = M5mqtt('myBlocklyClient123', 'broker.emqx.io', 1883, '', '', 300)
+m5mqtt.start()
+
+try:
+  req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+  json_object = req.json()  # ✅ parse JSON response
+  light1 = json_object["traffic_light_lane_3"]  
+  light2 = json_object["traffic_light_lane_4"]
+  req.close()
+  gc.collect()
+except Exception as e:
+  print("GET failed:", e)
+
+m5mqtt.publish('try1', str(light3), 0)
+m5mqtt.publish('try1', str(light4), 0)
+
+
+if light3 == 'green' and prev_state_light3 != 'green':
+    digitalWrite(25, 0)
+    digitalWrite(21, 1)
+    wait(1)
+    digitalWrite(21, 0)
+    digitalWrite(22, 1)
+    prev_state_light3 = 'green'
+
+elif light3 == 'red' and prev_state_light3 == 'green':
+    digitalWrite(22, 0)
+    digitalWrite(21, 1)
+    wait(1)
+    digitalWrite(21, 0)
+    digitalWrite(25, 1)
+    prev_state_light3 = 'red'
+
+elif light3 == 'red' and prev_state_light3 == 'red':
+    digitalWrite(22, 1)
+    prev_state_light3 = 'red'
+
+elif light3 == 'green' and prev_state_light3 == 'green':
+    digitalWrite(22, 1)
+    prev_state_light3 = 'green'
+
+if light4 == 'green' and prev_state_light4 != 'green':
+    digitalWrite(23, 0)
+    digitalWrite(33, 1)
+    wait(1)
+    digitalWrite(33, 0)
+    digitalWrite(19, 1)
+    prev_state_light4 = 'green'
+
+elif light4 == 'red' and prev_state_light4 == 'green':
+    digitalWrite(19, 0)
+    digitalWrite(33, 1)
+    wait(1)
+    digitalWrite(33, 0)
+    digitalWrite(23, 1)
+    prev_state_light4 = 'red'
+
+elif light4 == 'red' and prev_state_light4 == 'red':
+    digitalWrite(23, 1)
+    prev_state_light4 = 'red'
+
+elif light4 == 'green' and prev_state_light4 == 'green':
+    digitalWrite(19, 1)
+    prev_state_light4 = 'green'
+# Light3 (Atom2): Red=25, Yellow=21, Green=22
+wait(10)
+digitalWrite(25, 0)  # Red OFF
+wait(10)
+
+digitalWrite(21, 0)  # Yellow OFF
+wait(10)
+
+digitalWrite(22, 0)  # Green OFF
+wait(10)
+
+# Light4 (Atom2): Red=23, Yellow=33, Green=19
+digitalWrite(23, 0)  # Red OFF
+wait(10)
+
+digitalWrite(33, 0)  # Yellow OFF
+wait(10)
+
+digitalWrite(19, 0)  # Green OFF\
+wait(10)
