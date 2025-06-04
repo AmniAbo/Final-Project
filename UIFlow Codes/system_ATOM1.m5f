@@ -1,1 +1,80 @@
-{"components":[],"type":"atom","versions":"Beta","units":[],"hats":[],"stamps":[],"blockly":"<block type=\"basic_on_setup\" id=\"setup_block\" deletable=\"false\" x=\"50\" y=\"50\"></block><block type=\"basic_on_loop\" id=\"ay`KDBqU[isGih]sDx;=\" disabled=\"true\" x=\"130\" y=\"130\"><statement name=\"LOOP\"><block type=\"timer_delay\" id=\"?Z~g|y}K;(;`GX:i!!,Y\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"i/Hz#1HTVG:Y3O)sqV){\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"bW2^AK:w9jynA=I?].Wf\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"_]s{rl+q}O8^d8Vx7poc\" disabled=\"true\"><field name=\"NUM\">25</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\",yoGSy95EMMS*`(9X=Zy\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"timer_delay\" id=\"AlB}WLR~t|aOE@]fY7q$\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"*^KR@K!s:rECyMRXovht\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"42=^lJsol)I[2,/}He4N\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"HNmc(-IH$8qoU${]NAnY\" disabled=\"true\"><field name=\"NUM\">25</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"/;nGU+x^S8b9sL?NA(7N\" disabled=\"true\"><field name=\"NUM\">0</field></shadow></value><next><block type=\"timer_delay\" id=\"=|{0v{Ai9EpQ6qkAX_qS\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"*p(F~4WY7fC7pFm-yR1=\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"@}*q$tH~Y!j|u;W1Z;~]\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"|@=k0FmvI4/bvUwAdO0L\" disabled=\"true\"><field name=\"NUM\">22</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"q};;N}e1$xu(gno]AvsS\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"timer_delay\" id=\"ZVkU_S@#TGYb0K9iss#J\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"14QtT#d5PdXBuUcZGH^p\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"nJENHu%e)jk[HNh1e?rN\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"rUflkg^-X*(0`=6-L*E`\" disabled=\"true\"><field name=\"NUM\">22</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"Y1`D+Z*H}E-yM8*^ZuA~\" disabled=\"true\"><field name=\"NUM\">0</field></shadow></value><next><block type=\"timer_delay\" id=\"fpFl77A*NXB8*x[w8{wj\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"cNJ,2le+HMQgpkOf=R)%\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"Q5dMwB1O(G-$$}]c%LGK\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"Ux@~O2s969KEf:5P4UCT\" disabled=\"true\"><field name=\"NUM\">19</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"%_,FIE2Te!uV1s1U;*5B\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"timer_delay\" id=\"`Uqe`Kl[Wo:KeYXYn67(\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"f+~Qh$K!AL?p1gaP$e6?\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"`-S_r~8}+t)-8x/SHz[b\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\"8t|R!PLy}0W*Ozv?^ZkJ\" disabled=\"true\"><field name=\"NUM\">19</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"1_7NDTES$s}YvWRA)Cj8\" disabled=\"true\"><field name=\"NUM\">0</field></shadow></value><next><block type=\"timer_delay\" id=\"~qTYJ_}v(2|9{L4XF`^M\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\".D{U7:YsFKdXa!GiWa%A\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"4L}M5xH|Nb|!i@C4qs{4\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\",W-b?2R;d1$TtRa$vc(n\" disabled=\"true\"><field name=\"NUM\">23</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"[0p//T_w7VR+Ac.4eFbc\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"timer_delay\" id=\"{S!m{)WfjVy$xx0}PF;u\" disabled=\"true\"><value name=\"DELAY\"><shadow type=\"math_number\" id=\"phzO0;,oQk)fJqRy%|yw\" disabled=\"true\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"pins_digital_write\" id=\"zzT/3!nxK|;n8$O2]d[b\" disabled=\"true\"><value name=\"PIN\"><shadow type=\"math_number\" id=\":`H%AO;zeE5yBp?U4{%4\" disabled=\"true\"><field name=\"NUM\">23</field></shadow></value><value name=\"VALUE\"><shadow type=\"math_number\" id=\"rS1x,74~}{I^-A5q-2_m\" disabled=\"true\"><field name=\"NUM\">0</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block>","Blockly.Remotes":[],"Blockly.RemotePlus":[{"id":"__title","blockId":"","createTime":1748622534907,"name":"M5RemoteTitle","dragAndDrop":false,"resizable":false,"options":{"minWidth":1,"minHeight":1,"maxWidth":6,"maxHeight":10,"defaultWidth":2,"defaultHeight":1},"w":2,"h":1,"bgColor":"#0080FF","color":"#fff","fontsize":"M","label":"M5Remote","interval":3000,"code":"","event":"","dataSource":"none","ezdataToken":"gUHmkG5M7ZblzkoGZBfIrNU5Xic5KSuA","topic":"","needShadow":false,"type":"title","x":null,"y":null}],"modules":[],"cbIdList_":[],"eventCBIdList_":[],"apikey":"C93914C6","uuid":"52d7b8e9-1ce4-4b81-b2b5-fc862572a22c"}
+from m5stack import *
+from m5ui import *
+from uiflow import *
+from m5mqtt import M5mqtt
+import urequests
+import gc
+from easyIO import *
+
+prev_state_light1 = 'red'
+prev_state_light2 = 'red'
+
+
+# MQTT
+m5mqtt = M5mqtt('myBlocklyClient123', 'broker.emqx.io', 1883, '', '', 300)
+m5mqtt.start()
+
+try:
+  req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+  json_object = req.json()  # ✅ parse JSON response
+  light1 = json_object["traffic_light_lane_1"]  
+  light2 = json_object["traffic_light_lane_2"]
+  req.close()
+  gc.collect()
+except Exception as e:
+  print("GET failed:", e)
+
+m5mqtt.publish('try1', str(light1), 0)
+m5mqtt.publish('try1', str(light2), 0)
+
+
+if light1 == 'green' and prev_state_light1 != 'green':
+  digitalWrite(19, 0)     
+  digitalWrite(33, 1)     
+  wait(1)
+  digitalWrite(33, 0)     
+  digitalWrite(23, 1)     
+  prev_state_light1 = 'green'
+    
+elif light1 == 'green' and prev_state_light1 == 'green':
+  digitalWrite(19, 0)   # Red off
+  digitalWrite(33, 0)   # Yellow off
+  digitalWrite(23, 1)   # Green on
+
+elif light1 == 'red' and prev_state_light1 == 'green':
+
+  digitalWrite(23, 0)  
+  digitalWrite(33, 1)  
+  wait(1)
+  digitalWrite(33, 0)
+  digitalWrite(19, 1)  
+  prev_state_light1 = 'red'
+elif light1 == 'red' and prev_state_light1 == 'red':
+  digitalWrite(19, 1)   # Red on
+  digitalWrite(33, 0)   # Yellow off
+  digitalWrite(23, 0)   # Green off
+
+
+if light2 == 'green' and prev_state_light2 != 'green':
+  digitalWrite(22, 0)  
+  digitalWrite(21, 1)  
+  wait(1)
+  digitalWrite(21, 0)
+  digitalWrite(25, 1)  
+  prev_state_light2 = 'green'
+
+elif light2 == 'red' and prev_state_light2 == 'green':
+  digitalWrite(25, 0)  
+  digitalWrite(21, 1)  
+  wait(1)
+  digitalWrite(21, 0)
+  digitalWrite(22, 1)  
+  prev_state_light2 = 'red'
+  
+elif light2 == 'red' and prev_state_light2 == 'red':
+  digitalWrite(22, 1)  
+  prev_state_light2 = 'red'
+
+elif light2 == 'green' and prev_state_light2 == 'green':
+  digitalWrite(25, 1)  
+  prev_state_light2 = 'green'
