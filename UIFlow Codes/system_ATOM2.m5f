@@ -76,23 +76,4 @@ elif light4 == 'red' and prev_state_light4 == 'red':
 elif light4 == 'green' and prev_state_light4 == 'green':
     digitalWrite(19, 1)
     prev_state_light4 = 'green'
-# Light3 (Atom2): Red=25, Yellow=21, Green=22
-wait(10)
-digitalWrite(25, 0)  # Red OFF
-wait(10)
-
-digitalWrite(21, 0)  # Yellow OFF
-wait(10)
-
-digitalWrite(22, 0)  # Green OFF
-wait(10)
-
-# Light4 (Atom2): Red=23, Yellow=33, Green=19
-digitalWrite(23, 0)  # Red OFF
-wait(10)
-
-digitalWrite(33, 0)  # Yellow OFF
-wait(10)
-
-digitalWrite(19, 0)  # Green OFF\
 wait(10)
