@@ -59,7 +59,16 @@ function fetchPedestrianForecast() {
       const forecast = snapshot.val();
       if (!forecast || typeof forecast !== "object") return;
 
-      const sortedHours = Object.keys(forecast).sort();
+      
+      const sortedHours = Object.keys(forecast).sort((a, b) => {
+        const toMinutes = str => {
+          const [h, m] = str.split(":").map(Number);
+          return h * 60 + m;
+        };
+        const adjust = mins => (mins < 240 ? mins + 1440 : mins);  
+        return adjust(toMinutes(a)) - adjust(toMinutes(b));
+      });
+
       const labels = sortedHours;
       const values = sortedHours.map(hour => forecast[hour]);
 
@@ -71,6 +80,7 @@ function fetchPedestrianForecast() {
       console.error("❌ Error fetching pedestrian forecast:", error);
     });
 }
+
 
 // --- 4. Initial Load & Refresh Every Hour ---
 fetchPedestrianForecast();
