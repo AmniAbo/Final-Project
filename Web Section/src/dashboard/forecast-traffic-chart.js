@@ -109,17 +109,27 @@ function fetchTrafficForecast() {
       const obj = snapshot.val();
       if (!obj || typeof obj !== 'object') return;
 
-     
-      const sortedHours = Object.keys(obj).sort();
+      
+      const sortedHours = Object.keys(obj).sort((a, b) => {
+        const parseTime = timeStr => {
+          const [h, m] = timeStr.split(':').map(Number);
+          return h * 60 + m;  
+        };
 
-   
-      const labels = sortedHours; 
-      const levels = sortedHours.map(hour => obj[hour]); 
+        const aMin = parseTime(a);
+        const bMin = parseTime(b);
+
+        
+        const adjust = mins => (mins < 240 ? mins + 1440 : mins); 
+        return adjust(aMin) - adjust(bMin);
+      });
+
+      const labels = sortedHours;
+      const levels = sortedHours.map(hour => obj[hour]);
       const numericData = levels.map(trafficToNumber);
       const backgroundColors = levels.map(trafficToColor);
       const borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
 
-    
       chart.data.labels = labels;
       chart.data.datasets[0].data = numericData;
       chart.data.datasets[0].backgroundColor = backgroundColors;
@@ -128,6 +138,7 @@ function fetchTrafficForecast() {
     })
     .catch(err => console.error('❌ Traffic forecast fetch error:', err));
 }
+
 
 
 // Initial fetch and periodic refresh
