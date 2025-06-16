@@ -63,15 +63,25 @@ function fetchTrafficData() {
         return;
       }
 
-     
-      const sortedKeys = Object.keys(forecastObj).sort();
-      const currentHour = sortedKeys[0];
+      
+      const sortedKeys = Object.keys(forecastObj).sort((a, b) => {
+        const parseTime = timeStr => {
+          const [h, m] = timeStr.split(':').map(Number);
+          return h * 60 + m;
+        };
+
+        const adjust = mins => (mins < 240 ? mins + 1440 : mins);  
+        return adjust(parseTime(a)) - adjust(parseTime(b));
+      });
+
+      const currentHour = sortedKeys[0];  
       const currentForecast = forecastObj[currentHour];
 
       updateTrafficCard(currentForecast);
     })
     .catch(err => console.error('Firebase traffic forecast fetch error:', err));
 }
+
 
 // Initial load
 fetchTrafficData();
