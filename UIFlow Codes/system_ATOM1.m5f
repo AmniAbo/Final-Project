@@ -1,3 +1,4 @@
+
 from m5stack import *
 from m5ui import *
 from uiflow import *
@@ -5,76 +6,94 @@ from m5mqtt import M5mqtt
 import urequests
 import gc
 from easyIO import *
-
+n = 0
 prev_state_light1 = 'red'
 prev_state_light2 = 'red'
 
+digitalWrite(22,0)
+wait(0.5)
+digitalWrite(19,0)
+wait(0.5)
 
+digitalWrite(25,0)
+wait(0.5)
+
+digitalWrite(21,0)
+wait(0.5)
+
+digitalWrite(23,0)
+wait(0.5)
+
+digitalWrite(33,0)
+wait(0.5)
+
+digitalWrite(19,0)
 # MQTT
 m5mqtt = M5mqtt('myBlocklyClient123', 'broker.emqx.io', 1883, '', '', 300)
 m5mqtt.start()
-
-try:
-  req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
-  json_object = req.json()  # ✅ parse JSON response
-  light1 = json_object["traffic_light_lane_1"]  
-  light2 = json_object["traffic_light_lane_2"]
-  req.close()
-  gc.collect()
-except Exception as e:
-  print("GET failed:", e)
-
-m5mqtt.publish('try1', str(light1), 0)
-m5mqtt.publish('try1', str(light2), 0)
-
-
-if light1 == 'green' and prev_state_light1 != 'green':
-  digitalWrite(19, 0)     
-  digitalWrite(33, 1)     
-  wait(1)
-  digitalWrite(33, 0)     
-  digitalWrite(23, 1)     
-  prev_state_light1 = 'green'
-    
-elif light1 == 'green' and prev_state_light1 == 'green':
-  digitalWrite(19, 0)   # Red off
-  digitalWrite(33, 0)   # Yellow off
-  digitalWrite(23, 1)   # Green on
-
-elif light1 == 'red' and prev_state_light1 == 'green':
-
-  digitalWrite(23, 0)  
-  digitalWrite(33, 1)  
-  wait(1)
-  digitalWrite(33, 0)
-  digitalWrite(19, 1)  
-  prev_state_light1 = 'red'
-elif light1 == 'red' and prev_state_light1 == 'red':
-  digitalWrite(19, 1)   # Red on
-  digitalWrite(33, 0)   # Yellow off
-  digitalWrite(23, 0)   # Green off
-
-
-if light2 == 'green' and prev_state_light2 != 'green':
-  digitalWrite(22, 0)  
-  digitalWrite(21, 1)  
-  wait(1)
-  digitalWrite(21, 0)
-  digitalWrite(25, 1)  
-  prev_state_light2 = 'green'
-
-elif light2 == 'red' and prev_state_light2 == 'green':
-  digitalWrite(25, 0)  
-  digitalWrite(21, 1)  
-  wait(1)
-  digitalWrite(21, 0)
-  digitalWrite(22, 1)  
-  prev_state_light2 = 'red'
+while n==0:
+  wait(2)
+  try:
+    req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+    json_object = req.json()  # ✅ parse JSON response
+    light1 = json_object["traffic_light_lane_1"]  
+    light2 = json_object["traffic_light_lane_2"]
+    req.close()
+    gc.collect()
+  except Exception as e:
+    print("GET failed:", e)
   
-elif light2 == 'red' and prev_state_light2 == 'red':
-  digitalWrite(22, 1)  
-  prev_state_light2 = 'red'
-
-elif light2 == 'green' and prev_state_light2 == 'green':
-  digitalWrite(25, 1)  
-  prev_state_light2 = 'green'
+  m5mqtt.publish('try1', str(light1), 0)
+  m5mqtt.publish('try1', str(light2), 0)
+  
+  
+  if light1 == 'green' and prev_state_light1 != 'green':
+    digitalWrite(19, 0)     
+    digitalWrite(33, 1)     
+    wait(1)
+    digitalWrite(33, 0)     
+    digitalWrite(23, 1)     
+    prev_state_light1 = 'green'
+      
+  elif light1 == 'green' and prev_state_light1 == 'green':
+    digitalWrite(19, 0)   # Red off
+    digitalWrite(33, 0)   # Yellow off
+    digitalWrite(23, 1)   # Green on
+  
+  elif light1 == 'red' and prev_state_light1 == 'green':
+  
+    digitalWrite(23, 0)  
+    digitalWrite(33, 1)  
+    wait(1)
+    digitalWrite(33, 0)
+    digitalWrite(19, 1)  
+    prev_state_light1 = 'red'
+  elif light1 == 'red' and prev_state_light1 == 'red':
+    digitalWrite(19, 1)   # Red on
+    digitalWrite(33, 0)   # Yellow off
+    digitalWrite(23, 0)   # Green off
+  
+  
+  if light2 == 'green' and prev_state_light2 != 'green':
+    digitalWrite(22, 0)  
+    digitalWrite(21, 1)  
+    wait(1)
+    digitalWrite(21, 0)
+    digitalWrite(25, 1)  
+    prev_state_light2 = 'green'
+  
+  elif light2 == 'red' and prev_state_light2 == 'green':
+    digitalWrite(25, 0)  
+    digitalWrite(21, 1)  
+    wait(1)
+    digitalWrite(21, 0)
+    digitalWrite(22, 1)  
+    prev_state_light2 = 'red'
+    
+  elif light2 == 'red' and prev_state_light2 == 'red':
+    digitalWrite(22, 1)  
+    prev_state_light2 = 'red'
+  
+  elif light2 == 'green' and prev_state_light2 == 'green':
+    digitalWrite(25, 1)  
+    prev_state_light2 = 'green'
