@@ -1,0 +1,51 @@
+from m5stack import *
+from m5ui import *
+from uiflow import *
+from m5mqtt import M5mqtt
+import urequests
+import gc
+from easyIO import *
+
+
+prev_state = 'red'
+
+n=0
+
+
+# MQTT
+m5mqtt = M5mqtt('myBlocklyClient123', 'broker.emqx.io', 1883, '', '', 300)
+m5mqtt.start()
+
+try:
+  req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+  json_object = req.json()  # ✅ parse JSON response
+  lightp = json_object["traffic_light_pedestrian"]  
+  req.close()
+  gc.collect()
+except Exception as e:
+  print("GET failed:", e)
+
+
+
+while (True):
+  if lightp == 'green' :
+    wait(1)
+    digitalWrite(32, 0)
+    wait(1)
+    digitalWrite(26, 1)
+
+  if lightp == 'red' :
+    wait(1)
+    digitalWrite(26, 0)
+    wait(1)
+    digitalWrite(32, 1)
+  wait(3)
+    try:
+    req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+    json_object = req.json()  # ✅ parse JSON response
+    lightp = json_object["traffic_light_pedestrian"]  
+    req.close()
+    gc.collect()
+  except Exception as e:
+    print("GET failed:", e)
+  wait(0.5)
