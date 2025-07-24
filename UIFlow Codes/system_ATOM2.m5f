@@ -6,74 +6,100 @@ import urequests
 import gc
 from easyIO import *
 
-
+n = 0
 prev_state_light3 = 'red'
 prev_state_light4 = 'red'
 
+digitalWrite(22,0)
+wait(0.5)
+digitalWrite(19,0)
+wait(0.5)
+
+digitalWrite(25,0)
+wait(0.5)
+
+digitalWrite(21,0)
+wait(0.5)
+
+digitalWrite(23,0)
+wait(0.5)
+
+digitalWrite(33,0)
+wait(0.5)
+
+digitalWrite(19,0)
 
 # MQTT
 m5mqtt = M5mqtt('myBlocklyClient123', 'broker.emqx.io', 1883, '', '', 300)
 m5mqtt.start()
-
-try:
-  req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
-  json_object = req.json()  # ✅ parse JSON response
-  light1 = json_object["traffic_light_lane_3"]  
-  light2 = json_object["traffic_light_lane_4"]
-  req.close()
-  gc.collect()
-except Exception as e:
-  print("GET failed:", e)
-
-m5mqtt.publish('try1', str(light3), 0)
-m5mqtt.publish('try1', str(light4), 0)
-
-
-if light3 == 'green' and prev_state_light3 != 'green':
-    digitalWrite(25, 0)
-    digitalWrite(21, 1)
-    wait(1)
-    digitalWrite(21, 0)
-    digitalWrite(22, 1)
-    prev_state_light3 = 'green'
-
-elif light3 == 'red' and prev_state_light3 == 'green':
-    digitalWrite(22, 0)
-    digitalWrite(21, 1)
-    wait(1)
-    digitalWrite(21, 0)
-    digitalWrite(25, 1)
-    prev_state_light3 = 'red'
-
-elif light3 == 'red' and prev_state_light3 == 'red':
-    digitalWrite(22, 1)
-    prev_state_light3 = 'red'
-
-elif light3 == 'green' and prev_state_light3 == 'green':
-    digitalWrite(22, 1)
-    prev_state_light3 = 'green'
-
-if light4 == 'green' and prev_state_light4 != 'green':
-    digitalWrite(23, 0)
-    digitalWrite(33, 1)
-    wait(1)
-    digitalWrite(33, 0)
-    digitalWrite(19, 1)
-    prev_state_light4 = 'green'
-
-elif light4 == 'red' and prev_state_light4 == 'green':
-    digitalWrite(19, 0)
-    digitalWrite(33, 1)
-    wait(1)
-    digitalWrite(33, 0)
-    digitalWrite(23, 1)
-    prev_state_light4 = 'red'
-
-elif light4 == 'red' and prev_state_light4 == 'red':
-    digitalWrite(23, 1)
-    prev_state_light4 = 'red'
-
-elif light4 == 'green' and prev_state_light4 == 'green':
-    digitalWrite(19, 1)
-    prev_state_light4 = 'green'
-wait(10)
+while n==0:
+  wait(2)
+  try:
+    req = urequests.request(method='GET', url='https://trying-481a3-default-rtdb.firebaseio.com/data.json') # extracting from the firebase the right data
+    json_object = req.json()  # ✅ parse JSON response
+    light3 = json_object["traffic_light_lane_3"]  
+    light4 = json_object["traffic_light_lane_4"]
+    req.close()
+    gc.collect()
+  except Exception as e:
+    print("GET failed:", e)
+  
+  m5mqtt.publish('try1', str(light3), 0)
+  m5mqtt.publish('try1', str(light4), 0)
+  
+  
+  # ---------------- Light 3 Control ---------------- #
+  if light3 == 'green':
+      if prev_state_light3 != 'green':
+          # Transition from red to green
+          digitalWrite(25, 0)   # Red OFF
+          digitalWrite(21, 1)   # Yellow ON
+          wait(1)
+          digitalWrite(21, 0)   # Yellow OFF
+          digitalWrite(22, 1)   # Green ON
+      else:
+          # Stay green
+          digitalWrite(22, 1)   # Green stays ON
+      prev_state_light3 = 'green'
+  
+  elif light3 == 'red':
+      if prev_state_light3 == 'green':
+          # Transition from green to red
+          digitalWrite(22, 0)   # Green OFF
+          digitalWrite(21, 1)   # Yellow ON
+          wait(1)
+          digitalWrite(21, 0)   # Yellow OFF
+          digitalWrite(25, 1)   # Red ON
+      else:
+          # Stay red
+          digitalWrite(25, 1)   # Red stays ON
+      prev_state_light3 = 'red'
+  
+  
+  # ---------------- Light 4 Control ---------------- #
+  if light4 == 'green':
+      if prev_state_light4 != 'green':
+          # Transition from red to green
+          digitalWrite(23, 0)   # Red OFF
+          digitalWrite(33, 1)   # Yellow ON
+          wait(1)
+          digitalWrite(33, 0)   # Yellow OFF
+          digitalWrite(19, 1)   # Green ON
+      else:
+          # Stay green
+          digitalWrite(19, 1)   # Green stays ON
+      prev_state_light4 = 'green'
+  
+  elif light4 == 'red':
+      if prev_state_light4 == 'green':
+          # Transition from green to red
+          digitalWrite(19, 0)   # Green OFF
+          digitalWrite(33, 1)   # Yellow ON
+          wait(1)
+          digitalWrite(33, 0)   # Yellow OFF
+          digitalWrite(23, 1)   # Red ON
+      else:
+          # Stay red
+          digitalWrite(23, 1)   # Red stays ON
+      prev_state_light4 = 'red'
+  # Light3 (Atom2): Red=25, Yellow=21, Green=22
